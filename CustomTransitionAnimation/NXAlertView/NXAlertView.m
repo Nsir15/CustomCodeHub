@@ -128,6 +128,8 @@
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:sureBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:cancel attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:sureBtn attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:cancel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
     
+    //self 底部的约束
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:cancel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
 }
 
 - (UIButton *)buttonWithTitle:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage target:(id)target action:(SEL)action
