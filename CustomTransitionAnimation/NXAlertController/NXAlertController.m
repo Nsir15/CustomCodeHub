@@ -26,7 +26,7 @@
     controller.transitioningDelegate = controller.animator;
     controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.alertView = [[NXAlertView alloc]initWithTitle:title message:message];
-    controller.animator.presentViewFrame = CGRectMake(controller.view.center.x-150, controller.view.center.y-167, 300, 233);
+    controller.animator.presentViewFrame = CGRectMake(controller.view.center.x-150, controller.view.center.y-127, 300, 245);
     return controller;
 }
 

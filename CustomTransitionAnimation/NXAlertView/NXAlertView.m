@@ -57,6 +57,7 @@
     //添加textField
     self.textField = [[UITextField alloc]init];
     self.textField.placeholder = @"请输入4位验证码";
+    self.textField.keyboardType = UIKeyboardTypeTwitter;
     //修改字体大小
     [self.textField setValue:[UIFont boldSystemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
 //    self.textField.placeholderFont = [UIFont boldSystemFontOfSize:13];
@@ -106,8 +107,8 @@
     
     //textField
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:_textField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_codeView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:15]];
-    [containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_textField]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_textField)]];
-    
+    [containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[_textField]-30-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_textField)]];
+    [containerView addConstraint:[NSLayoutConstraint constraintWithItem:self.textField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0 constant:30]];
     //按钮顶部分割线
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:topLine attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_textField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:15]];
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:topLine attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0 constant:1.0]];
@@ -121,7 +122,7 @@
     //按钮分割线
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:btnLine attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cancel attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:btnLine attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:topLine attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
-    [containerView addConstraint:[NSLayoutConstraint constraintWithItem:btnLine attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:cancel attribute:NSLayoutAttributeHeight multiplier:1.0 constant:5]];
+    [containerView addConstraint:[NSLayoutConstraint constraintWithItem:btnLine attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:cancel attribute:NSLayoutAttributeHeight multiplier:1.0 constant:7]];
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:btnLine attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:0 constant:1.0]];
     //取消按钮
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:sureBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:cancel attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
@@ -149,20 +150,10 @@
     switch (result) {
         case 0:
         {
-//            UIView * view = [[UIView alloc]initWithFrame:CGRectMake(20, 20, 50, 50)];
-//            view.backgroundColor = [UIColor redColor];
-//            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n" message:@"验证成功" preferredStyle:UIAlertControllerStyleAlert];
-//            NSLog(@"center:%@,frame:%@",NSStringFromCGPoint(alert.view.center),NSStringFromCGRect(alert.view.frame));
-//            view.center = alert.view.center;
-//            alert.view.backgroundColor = [UIColor orangeColor];
-//            [alert.view addSubview:view];
-//            UIAlertAction * sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-//            UIAlertAction * cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-//            [alert addAction:sure];
-//            [alert addAction:cancel];
-//            [self presentViewController:alert animated:YES completion:nil];
             NSLog(@"验证成功");
-            [[self getRootVC] dismissViewControllerAnimated:YES completion:nil];
+            [[self getRootVC] dismissViewControllerAnimated:YES completion:^{
+                [self showSucessMessage];
+            }];
             break;
         }
         default:
@@ -178,6 +169,15 @@
     }
 }
 
+- (void)showSucessMessage
+{
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"" message:@"验证成功" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction * cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:sure];
+        [alert addAction:cancel];
+        [[self getRootVC] presentViewController:alert animated:YES completion:nil];
+}
 - (void)cancelClick{
     [[self getRootVC] dismissViewControllerAnimated:YES completion:nil];
 }
