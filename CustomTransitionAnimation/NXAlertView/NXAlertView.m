@@ -21,7 +21,9 @@
 {
     
     if (self = [super init]) {
-        
+        self.backgroundColor = [UIColor orangeColor];
+        self.layer.cornerRadius = 8;
+        self.layer.masksToBounds = YES;
         [self setUpUIWithTitle:title message:message];
     }
     return  self;
@@ -30,6 +32,7 @@
 - (void)setUpUIWithTitle:(NSString *)title message:(NSString *)message
 {
     UIView * containerView = [[UIView alloc]init];
+    containerView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
     containerView.translatesAutoresizingMaskIntoConstraints = NO;
     containerView.userInteractionEnabled = YES;
     [self addSubview:containerView];
@@ -60,7 +63,6 @@
     self.textField.keyboardType = UIKeyboardTypeTwitter;
     //修改字体大小
     [self.textField setValue:[UIFont boldSystemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
-//    self.textField.placeholderFont = [UIFont boldSystemFontOfSize:13];
     self.textField.borderStyle = UITextBorderStyleNone;
     self.textField.backgroundColor = [UIColor whiteColor];
     self.textField.translatesAutoresizingMaskIntoConstraints = NO;
@@ -90,20 +92,25 @@
     //布局
     //containerView
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[a]|" options:0 metrics:nil views:@{@"a":containerView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[a]|" options:0 metrics:nil views:@{@"a":containerView}]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:containerView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
     
     //title
     [containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[label]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(label)]];
     [containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[label(30)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(label)]];
    
     //message
-    [containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[messageLabel]-15-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(messageLabel)]];
+    [containerView addConstraint:[NSLayoutConstraint constraintWithItem:messageLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:label attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:messageLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:label attribute:NSLayoutAttributeBottom multiplier:1.0 constant:5.0]];
+    [containerView addConstraint:[NSLayoutConstraint constraintWithItem:messageLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:label attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
+    [containerView addConstraint:[NSLayoutConstraint constraintWithItem:messageLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0 constant:20.0]];
+
     
     //验证图片
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:_codeView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:messageLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:15.0]];
-    [containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-85-[_codeView]-85-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_codeView)]];
-    [containerView addConstraint:[NSLayoutConstraint constraintWithItem:_codeView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0 constant:60]];
+    [containerView addConstraint:[NSLayoutConstraint constraintWithItem:_codeView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:messageLabel attribute:NSLayoutAttributeLeft multiplier:1.0 constant:15.0]];
+    [containerView addConstraint:[NSLayoutConstraint constraintWithItem:_codeView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:messageLabel attribute:NSLayoutAttributeRight multiplier:1.0 constant:15.0]];
+    [containerView addConstraint:[NSLayoutConstraint constraintWithItem:_codeView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0 constant:60.0]];
+    
     
     //textField
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:_textField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_codeView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:15]];
@@ -113,6 +120,14 @@
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:topLine attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_textField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:15]];
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:topLine attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0 constant:1.0]];
     [containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[topLine]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(topLine)]];
+    
+    
+//    [self addConstraint:[NSLayoutConstraint constraintWithItem:containerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:topLine attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+//    CGFloat maxHeight = [UIScreen mainScreen].bounds.size.height - 100.0;
+//    [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:0 constant:maxHeight]];
+    
+//    [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+
     
     //按钮
     //取消按钮
@@ -128,8 +143,9 @@
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:sureBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:cancel attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
     [containerView addConstraint:[NSLayoutConstraint constraintWithItem:sureBtn attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:cancel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
     
-    //self 底部的约束
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:cancel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+    // self 底部的约束
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:containerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:cancel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
 }
 
 - (UIButton *)buttonWithTitle:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage target:(id)target action:(SEL)action

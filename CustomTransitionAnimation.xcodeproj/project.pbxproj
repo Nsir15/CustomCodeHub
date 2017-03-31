@@ -16,13 +16,11 @@
 		457A744F1DB9A6830041BBC7 /* CustomTransitionAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 457A744E1DB9A6830041BBC7 /* CustomTransitionAnimationTests.m */; };
 		457A745A1DB9A6830041BBC7 /* CustomTransitionAnimationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 457A74591DB9A6830041BBC7 /* CustomTransitionAnimationUITests.m */; };
 		457A74691DB9A6C70041BBC7 /* ScondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 457A74681DB9A6C70041BBC7 /* ScondViewController.m */; };
-		457A746C1DB9A7030041BBC7 /* CustomPresentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 457A746B1DB9A7030041BBC7 /* CustomPresentedView.m */; };
 		457A74701DB9A87C0041BBC7 /* CustomAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 457A746F1DB9A87C0041BBC7 /* CustomAnimator.m */; };
 		457A74721DB9AE870041BBC7 /* ScondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 457A74711DB9AE870041BBC7 /* ScondViewController.xib */; };
 		B92D4F931E8BA8A30025924D /* NXAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92D4F921E8BA8A30025924D /* NXAlertController.m */; };
 		B92D4F961E8BA8BB0025924D /* NXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B92D4F951E8BA8BB0025924D /* NXAlertView.m */; };
 		B92D4F9B1E8CB2A10025924D /* AuthCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B92D4F9A1E8CB2A10025924D /* AuthCodeView.m */; };
-		B92D4FA31E8CD8A60025924D /* NXTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B92D4FA21E8CD8A60025924D /* NXTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +59,6 @@
 		457A745B1DB9A6830041BBC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		457A74671DB9A6C70041BBC7 /* ScondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScondViewController.h; sourceTree = "<group>"; };
 		457A74681DB9A6C70041BBC7 /* ScondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScondViewController.m; sourceTree = "<group>"; };
-		457A746A1DB9A7030041BBC7 /* CustomPresentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPresentedView.h; path = ../CustomPresentedView.h; sourceTree = "<group>"; };
-		457A746B1DB9A7030041BBC7 /* CustomPresentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPresentedView.m; path = ../CustomPresentedView.m; sourceTree = "<group>"; };
 		457A746E1DB9A87C0041BBC7 /* CustomAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomAnimator.h; path = ../CustomAnimator.h; sourceTree = "<group>"; };
 		457A746F1DB9A87C0041BBC7 /* CustomAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomAnimator.m; path = ../CustomAnimator.m; sourceTree = "<group>"; };
 		457A74711DB9AE870041BBC7 /* ScondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScondViewController.xib; sourceTree = "<group>"; };
@@ -73,8 +69,6 @@
 		B92D4F991E8CB2A10025924D /* AuthCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthCodeView.h; sourceTree = "<group>"; };
 		B92D4F9A1E8CB2A10025924D /* AuthCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthCodeView.m; sourceTree = "<group>"; };
 		B92D4F9D1E8CB4D10025924D /* CommonHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonHeader.h; sourceTree = "<group>"; };
-		B92D4FA11E8CD8A60025924D /* NXTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXTextField.h; sourceTree = "<group>"; };
-		B92D4FA21E8CD8A60025924D /* NXTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,12 +183,8 @@
 		B92D4F8F1E8BA8450025924D /* NXAlertView */ = {
 			isa = PBXGroup;
 			children = (
-				457A746A1DB9A7030041BBC7 /* CustomPresentedView.h */,
-				457A746B1DB9A7030041BBC7 /* CustomPresentedView.m */,
 				B92D4F941E8BA8BB0025924D /* NXAlertView.h */,
 				B92D4F951E8BA8BB0025924D /* NXAlertView.m */,
-				B92D4FA11E8CD8A60025924D /* NXTextField.h */,
-				B92D4FA21E8CD8A60025924D /* NXTextField.m */,
 			);
 			name = NXAlertView;
 			path = ../CustomTransitionAnimation/NXAlertView;
@@ -377,8 +367,6 @@
 			files = (
 				457A743C1DB9A6830041BBC7 /* ViewController.m in Sources */,
 				B92D4F961E8BA8BB0025924D /* NXAlertView.m in Sources */,
-				457A746C1DB9A7030041BBC7 /* CustomPresentedView.m in Sources */,
-				B92D4FA31E8CD8A60025924D /* NXTextField.m in Sources */,
 				B92D4F931E8BA8A30025924D /* NXAlertController.m in Sources */,
 				B92D4F9B1E8CB2A10025924D /* AuthCodeView.m in Sources */,
 				457A74701DB9A87C0041BBC7 /* CustomAnimator.m in Sources */,

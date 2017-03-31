@@ -7,7 +7,8 @@
 //
 
 #import "CustomAnimator.h"
-#import "CustomPresentedView.h"
+#import "NXAlertController.h"
+
 @implementation CustomAnimator
 
 
@@ -25,12 +26,6 @@
     return self;
 }
 
-- (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source
-{
-    CustomPresentedView * presentView =  [[CustomPresentedView alloc]initWithPresentedViewController:presented presentingViewController:presenting];
-    presentView.presentFrame = self.presentViewFrame;
-    return presentView;
-}
 
 #pragma mark -- UIViewControllerAnimatedTransitioning  动画控制器
 
@@ -58,12 +53,14 @@
 //present动画
 - (void)presentTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    UIViewController * toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    NXAlertController * toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    toVC.backgroundView.alpha = 0;
     CGAffineTransform oldTransform = toVC.view.transform;
     toVC.view.transform = CGAffineTransformScale(oldTransform, 0.9, 0.9); //这里产产生的就是一个类似alert的弹出动画效果(先缩小0.1，在动画里面进行放大，产生动画)
     [[transitionContext containerView] addSubview:toVC.view];
     //产生弹簧效果的API
-    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0 usingSpringWithDamping:0.5 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0 usingSpringWithDamping:0.45 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+        toVC.backgroundView.alpha = 1;
         toVC.view.transform = oldTransform;
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:YES];
